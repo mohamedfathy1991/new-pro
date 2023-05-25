@@ -1,0 +1,33 @@
+<p class="omar">adminlogin works!</p>
+
+
+<form [formGroup]="adminloginForm"  class="omar" >
+    
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email"#email>
+      <div id="email" class="form-text">email</div>
+       
+      <div class="alert alert-danger" *ngIf="adminloginForm.controls['email'].invalid && (adminloginForm.controls['email'].touched||adminloginForm.controls['email'].dirty) ">
+                    
+        <span  *ngIf="adminloginForm.controls['email'].errors.required">email required</span>
+        <span  *ngIf="adminloginForm.controls['email'].errors.email">email format err</span>
+           
+       </div>
+    </div>
+    <div class="mb-3">
+      <label for="passwoed" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" #password formControlName="password">
+      <div class="alert alert-danger" *ngIf="adminloginForm.controls['password'].invalid && (adminloginForm.controls['password'].touched) ">
+  
+        <span  *ngIf="adminloginForm.controls['password'].errors.required">  password  req</span>             
+    </div>
+    </div>
+  
+     <button type="submit"(click)="login(email.value,password.value)"
+     [disabled]="adminloginForm.pristine||adminloginForm.invalid" class="btn btn-primary">Submit</button> 
+     <span>{{msg.value}} asd</span>
+
+
+  </form>
+     

@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'omar';
+
+  userauthoriziation= localStorage.getItem('token')
+
+    isAdmin = localStorage.getItem('username')=="aser"||"admin"
+    
+
+
+  title = 'omar fathy';
+
+  onclick(){
+    console.log(this.isAdmin)
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwww')
+  }
+  onkeyup(){
+    console.log(this.title)
+  }
+
 }

@@ -1,0 +1,67 @@
+
+
+
+
+
+ 
+
+<!-- Resources -->
+
+
+      <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <form [formGroup]="SignupForm">
+                <div class="mb-3">
+                  <label for="username" class="form-label">username</label>
+                  <input type="text" ngModel name="name"   class="form-control" #name formControlName="name" id="name" aria-describedby="emailHelp">
+                 <div class="alert alert-danger" *ngIf="SignupForm.controls['name'].invalid && SignupForm.controls['name'].touched ">name requred</div>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control"  formControlName="email" #email id="email" aria-describedby="emailHelp">
+                  
+                  <div class="alert alert-danger" *ngIf="SignupForm.controls['email'].invalid && (SignupForm.controls['email'].touched||SignupForm.controls['email'].dirty) ">
+                    
+                    <span  *ngIf="SignupForm.controls['email'].errors.required">email required</span>
+                    <span  *ngIf="SignupForm.controls['email'].errors.email">email format err</span>
+                       
+                   </div>
+                </div>
+                <div class="mb-3">
+                  <label for="passwoed" class="form-label">Password</label>
+                  <input type="password" class="form-control"  formControlName="password" #password  id="password">
+                  <div class="alert alert-danger" *ngIf="SignupForm.controls['password'].invalid && (SignupForm.controls['password'].touched) ">
+                    <span  *ngIf="SignupForm.controls['password'].errors.minlength">  password too short</span>
+                    <span  *ngIf="SignupForm.controls['password'].errors.required">  password  req</span>             
+                </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="confirm passwoed" class="form-label">confirm Password</label>
+                  <input type="password" class="form-control"  formControlName="confirmpassword" #confirmpassword pattern="{{password.value}}" id="confirmpassword">
+                  <div class="alert alert-danger" *ngIf="SignupForm.controls['confirmpassword'].invalid &&
+                               (SignupForm.controls['confirmpassword'].touched||SignupForm.controls['confirmpassword'].dirty) ">
+        
+                    <span  *ngIf="SignupForm.controls['confirmpassword'].errors.required">  confirm password  req</span>
+                    <span  *ngIf="confirmpassword.value !== password.value">   password  miismatch{{password.value}}---{{confirmpassword.value}}</span>
+
+                </div>
+                
+                </div>
+              
+                <button    type="submit" [disabled]="SignupForm.pristine||SignupForm.invalid" class="btn btn-primary"
+               
+               
+                (click)="adduser(name.value,email.value,password.value)">   Submit</button>
+             
+             
+               
+              </form>
+
+              <span>{{msg.value}}</span>
+          </div>
+      </div>   
+    
+       
+    
+         
